@@ -35,9 +35,9 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required('Email obrigatório')
-            .email('Email inválido.'),
-          password: Yup.string().required('Senha obrigatória'),
+            .required('Email required')
+            .email('Email invalid.'),
+          password: Yup.string().required('mandatory password'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -52,9 +52,9 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(getValidationErrors(err));
         } else {
           addToast({
-            title: 'Erro na autenticação',
+            title: 'Authentication error',
             description:
-              'Ocorreu um erro ao fazer login, cheque as credenciais.',
+              'There was an error logging in, check the credentials.',
             type: 'error',
           });
         }
@@ -69,21 +69,21 @@ const SignIn: React.FC = () => {
         <AnimationContainer>
           <img src={logo} alt="Go Barber" />
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça o seu logon</h1>
+            <h1>Login</h1>
             <Input icon={FiMail} name="email" placeholder="E-mail" />
             <Input
               icon={FiLock}
               name="password"
               type="password"
-              placeholder="Senha"
+              placeholder="password"
             />
-            <Button type="submit">Entrar</Button>
-            <Link to="/forgot-password">Esqueci minha senha</Link>
+            <Button type="submit">Enter</Button>
+            <Link to="/forgot-password">Forgot Password</Link>
           </Form>
 
           <Link to="/sign-up">
             <FiLogIn />
-            Criar conta
+            Sign Up
           </Link>
         </AnimationContainer>
       </Content>
